@@ -1,7 +1,6 @@
 import re
 import numpy as np
 import pandas as pd
-import math
 
 f = open('day8input.txt','r')
 line = f.readline()
@@ -25,7 +24,7 @@ def doiter(starts,dirs,step):
     for dir1 in dirs:
         nextinds = df.loc[inds, dir1]
         inds = nextinds
-        if (df.loc[inds,'last']=='Z'):
+        if (df.loc[inds,'last']=='Z').all():
             cont = 0
             print('Completed in ', step)
             return(inds,step,cont)
@@ -36,14 +35,8 @@ def doiter(starts,dirs,step):
     return(inds,step,cont)
 
 starts = df[df['last']=='A'].index
-laststep=[]
-for inds in starts:
-    step=1
-    cont=1
-    while cont:
-        inds, step, cont = doiter(inds,dirs,step)
-    laststep.append(step)
-    print(inds,step)
-
-print(laststep)
-print(math.lcm(16343, 16897, 21883, 20221, 19667, 13019))
+inds = starts
+step=1
+while cont:
+    inds, step, cont = doiter(inds,dirs,step)
+    print(df.loc[inds,'last'])
