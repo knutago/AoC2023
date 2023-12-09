@@ -39,4 +39,4 @@ inds = starts
 step=1
 while cont:
     inds, step, cont = doiter(inds,dirs,step)
-    print(df.loc[inds,'last'])
+    print('Continuing after step',step)
