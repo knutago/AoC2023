@@ -2,7 +2,7 @@ import numpy as np
 import re
 import itertools
 
-f = open('day12test.txt','r')
+f = open('day12input.txt','r')
 lines = f.readlines()
 f.close()
 
@@ -18,16 +18,14 @@ for line in lines:
     spaces = [range(0,dd)] + [range(1,dd+1)]*(len(sz)-1)
     inds = []
     strs = []
-    #inds = [c for c in itertools.product(*spaces) if np.sum(c) <= dd]
-    for i in itertools.product(*spaces):
-        space1 = np.array(i)
-        if space1.sum() <= dd:
-            inds.append(i)
-            str1=''
-            for ii,sz1 in zip(i,sz):
-                 str1 += ('.'*ii + '#'*sz1)
-            str1 = str1.ljust(length,'.')
-            strs.append(str1)
+    inds = [c for c in itertools.product(*spaces) if np.sum(c) <= dd]
+    for ind in inds:
+        str1=''
+        for ii,sz1 in zip(ind,sz):
+            str1 += ('.'*ii + '#'*sz1)
+        str1 = str1.ljust(length,'.')
+        strs.append(str1)
+
 
     count1 = 0
     matches = []
@@ -42,7 +40,7 @@ for line in lines:
         if np.array(ok).all():
             count1 += 1
             matches.append(str1)
-    print(line,count1)
+    #print(line,count1)
             
     countall += count1
 
