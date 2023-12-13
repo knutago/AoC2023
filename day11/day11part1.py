@@ -8,7 +8,7 @@ f = open('day11input.txt','r')
 lines = f.readlines()
 f.close()
 
-imap = np.empty((len(lines[0])-1,len(lines)), dtype=str_)
+imap = np.empty((len(lines[0])-1,len(lines)), dtype=str)
 for i,line in zip(range(len(lines)), lines):
     imap[i,:] = list(line.strip())
 
